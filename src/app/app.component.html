@@ -1,0 +1,15 @@
+<div class="container">
+  <h1 class="mt-4 mb-4">Quiz</h1>
+  <div *ngIf="currentQuestionIndex < questions.length" class="question">
+    <h2 class="mb-3">{{ questions[currentQuestionIndex].question }}</h2>
+    <div *ngFor="let option of questions[currentQuestionIndex].options; let i = index" class=" form-check option">
+      <input class="form-check-input" type="radio" name="option" [value]="option" (click)="selectAnswer(option)" [checked]="selectedAnswer === option">
+      <label class="form-check-label">{{ option }}</label>
+    </div>
+    <button (click)="nextQuestion()" class="btn btn-primary mt-3">Next</button>
+  </div>
+  <div *ngIf="currentQuestionIndex === questions.length" class="question">
+    <h2 class="mt-3">Quiz Completed!</h2>
+    <p>Your Score: {{ score }} out of {{ questions.length }}</p>
+  </div>
+</div>
